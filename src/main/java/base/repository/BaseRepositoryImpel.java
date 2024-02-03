@@ -49,6 +49,15 @@ private final Connection connection;
             preparedStatement.executeUpdate();
         }
     }
+    @Override
+    public void delete(ID id) throws SQLException {
+        //todo for example: DELETE FROM person WHERE id = ?
+        String sql = "DELETE FROM " + getTableName() + " WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, (Integer) id);
+            preparedStatement.executeUpdate();
+        }
+    }
 
 
 
