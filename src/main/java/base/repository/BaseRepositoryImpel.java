@@ -30,6 +30,19 @@ private final Connection connection;
 
         }
     }
+    @Override
+    public TYPE findBYId(ID id) throws SQLException {
+        //todo for example: SELECT * FROM person WHERE id = ?
+        String sql = "SELECT * FROM " + getTableName() + " WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, (Integer) id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next())
+                return mapResultSetToEntity(resultSet);
+        }
+        return null;
+    }
+
 
 
     public abstract String getTableName();
