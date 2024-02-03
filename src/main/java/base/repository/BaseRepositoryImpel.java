@@ -32,7 +32,6 @@ private final Connection connection;
     }
     @Override
     public TYPE findBYId(ID id) throws SQLException {
-        //todo for example: SELECT * FROM person WHERE id = ?
         String sql = "SELECT * FROM " + getTableName() + " WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, (Integer) id);
@@ -41,6 +40,14 @@ private final Connection connection;
                 return mapResultSetToEntity(resultSet);
         }
         return null;
+    }
+    @Override
+    public void update(TYPE entity) throws SQLException {
+        String sql = "UPDATE " + getTableName() + " SET " + getUpdateQueryParams() + " WHERE id = " + entity.getId();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            fillParamForStatement(preparedStatement, entity, true);
+            preparedStatement.executeUpdate();
+        }
     }
 
 
