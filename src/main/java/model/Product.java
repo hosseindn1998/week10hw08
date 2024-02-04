@@ -1,19 +1,18 @@
 package model;
+
 import base.model.BaseEntity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class User extends BaseEntity<Integer> {
+public class Product extends BaseEntity<Integer> {
     int id;
-    String firstName;
-    String lastName;
-    String username;
-    String password;
-
-
+    String name;
+    int price;
+    int AvailableCount;
+    int category_id;
 }

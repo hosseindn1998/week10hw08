@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level= AccessLevel.PRIVATE)
-public class Admin extends BaseEntity {
+public class Admin extends BaseEntity<Integer> {
     int id;
     String fullName;
     String username;
